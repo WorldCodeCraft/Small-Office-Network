@@ -56,7 +56,7 @@ Amaç; **ağ segmentasyonu, güvenlik ve yönetim prensiplerini** uygulamalı ol
 ---
 
 ## 👨‍💻 Tasarım & Katkıda Bulunan  
-**Proje Tasarımcısı:** [Batu]  
+**Proje Tasarımcısı:** Batuhan  
 **Katkılar:** Ağ topolojisi tasarımı, VLAN yapılandırması, güvenlik ve yönetim ayarları, test senaryoları.  
 
 ---
