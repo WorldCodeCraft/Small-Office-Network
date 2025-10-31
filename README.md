@@ -11,10 +11,10 @@ Each department communicates only within its own VLAN, providing both **security
 
 | Department | VLAN ID | IP Range | Switch | PC Count |
 |-------------|----------|-----------|----------|-----------|
-| Human Resources (HR) | 10 | 192.168.10.0/24 | SW-HR | 10 |
-| IT Department | 20 | 192.168.20.0/24 | SW-IT | 10 |
-| Sales | 30 | 192.168.30.0/24 | SW-SALES | 10 |
-| Management | 40 | 192.168.40.0/24 | SW-MGMT | 10 |
+| IT | 10 | 192.168.10.0/24 | SW-IT | 10 |
+| HR | 20 | 192.168.20.0/24 | SW-HR | 10 |
+| Finance | 30 | 192.168.30.0/24 | SW-FINANCE | 10 |
+| Sales | 40 | 192.168.40.0/24 | SW-SALES | 10 |
 | Core Switch | - | 192.168.99.0/24 | SW-CORE | - |
 | Router | - | 192.168.99.1/24 | R1 | - |
 
@@ -30,10 +30,9 @@ Each department communicates only within its own VLAN, providing both **security
 
 ## 🧠 Design Principles
 - Each department is isolated using **VLANs** (10, 20, 30, 40).  
-- The Core Switch manages **all VLAN definitions** and **trunk links**.  
-- **No inter-VLAN routing** (each VLAN is isolated).  
-- **Secure management configuration** (password encryption, banners).  
-- Optimized configuration — no unnecessary commands.
+- The Core Switch manages **VLAN definitions** and **trunk connections**.  
+- **No inter-VLAN routing** (departments are isolated).  
+- **Secure management** configuration (password encryption, banners).  
 
 ---
 
@@ -44,13 +43,13 @@ conf t
 
 ! VLAN Definitions
 vlan 10
- name HR
-vlan 20
  name IT
+vlan 20
+ name HR
 vlan 30
- name SALES
+ name FINANCE
 vlan 40
- name MANAGEMENT
+ name SALES
 vlan 99
  name MGMT
 exit
@@ -67,7 +66,7 @@ interface vlan 99
  ip address 192.168.99.1 255.255.255.0
  no shutdown
 
-! Security Settings
+! Security & Management
 service password-encryption
 enable secret core123
 banner motd #Unauthorized access is prohibited#
