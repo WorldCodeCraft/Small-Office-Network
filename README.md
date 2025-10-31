@@ -1,47 +1,49 @@
-# 🖧 Small Office Network Simulation — VLAN Segmentation Project  
+# 🖧 Small Office Network Simulation — VLAN Bölümlendirme Projesi  
 
-## 🔹 Project Overview  
-This project simulates a **Small Office Network** using Cisco Packet Tracer.  
-It contains **four isolated departments (VLANs)** connected through a **Core Switch**, with VLAN segmentation and trunking implemented professionally.  
-Each department communicates only within its own VLAN, providing both **security and traffic separation**.
+## 🔹 Proje Hakkında  
+Bu proje, Cisco Packet Tracer üzerinde tasarlanmış küçük ölçekli bir ofis ağını simüle eder.  
+Ağ yapısında **4 departman (VLAN)** bulunur ve her biri kendi içinde iletişim kurarken diğer VLAN’lardan izole edilmiştir.  
+Merkezi bir **Core Switch** üzerinden VLAN yönetimi ve trunk bağlantıları sağlanmıştır.  
+Amaç; **ağ segmentasyonu, güvenlik ve yönetim prensiplerini** uygulamalı olarak göstermek.  
 
 ---
 
-## 🏢 Network Topology  
+## 🏢 Ağ Topolojisi  
 
-| Department | VLAN ID | IP Range | Switch | PC Count |
-|-------------|----------|-----------|----------|-----------|
+| Departman | VLAN ID | IP Aralığı | Switch | PC Sayısı |
+|------------|----------|-------------|----------|------------|
 | IT | 10 | 192.168.10.0/24 | SW-IT | 10 |
-| HR | 20 | 192.168.20.0/24 | SW-HR | 10 |
-| Finance | 30 | 192.168.30.0/24 | SW-FINANCE | 10 |
-| Sales | 40 | 192.168.40.0/24 | SW-SALES | 10 |
+| HR (İnsan Kaynakları) | 20 | 192.168.20.0/24 | SW-HR | 10 |
+| Finance (Finans) | 30 | 192.168.30.0/24 | SW-FINANCE | 10 |
+| Sales (Satış) | 40 | 192.168.40.0/24 | SW-SALES | 10 |
 | Core Switch | - | 192.168.99.0/24 | SW-CORE | - |
 | Router | - | 192.168.99.1/24 | R1 | - |
 
 ---
 
-## ⚙️ Devices Used
+## ⚙️ Kullanılan Cihazlar
 - **1× Router:** Cisco 2811  
 - **1× Core Switch:** Cisco 2960  
-- **4× Access Switches:** Cisco 2960  
-- **40× PCs (10 per department)**  
+- **4× Access Switch:** Cisco 2960  
+- **40× Bilgisayar (her VLAN’da 10 adet)**  
 
 ---
 
-## 🧠 Design Principles
-- Each department is isolated using **VLANs** (10, 20, 30, 40).  
-- The Core Switch manages **VLAN definitions** and **trunk connections**.  
-- **No inter-VLAN routing** (departments are isolated).  
-- **Secure management** configuration (password encryption, banners).  
+## 🎯 Temel Özellikler
+- VLAN segmentasyonu ile departmanlar arası izolasyon  
+- Trunk bağlantılar üzerinden VLAN taşıma  
+- Yönetim VLAN’ı (99) ile merkezi kontrol  
+- Şifreli erişim ve güvenlik önlemleri  
+- Kolay anlaşılır yapı ve profesyonel topoloji düzeni  
 
 ---
 
-## 🟦 Core Switch (SW-CORE)
+## 🟦 CORE SWITCH (SW-CORE)
 ```bash
 enable
 conf t
 
-! VLAN Definitions
+! VLAN Tanımları
 vlan 10
  name IT
 vlan 20
@@ -54,22 +56,22 @@ vlan 99
  name MGMT
 exit
 
-! Trunk Links to Access Switches
+! Access switch bağlantı portları (trunk)
 interface range FastEthernet0/1 - 0/4
  switchport mode trunk
  switchport trunk allowed vlan 10,20,30,40,99
  no shutdown
 exit
 
-! Management VLAN Interface
+! Yönetim VLAN’ı
 interface vlan 99
  ip address 192.168.99.1 255.255.255.0
  no shutdown
 
-! Security & Management
+! Güvenlik Ayarları
 service password-encryption
 enable secret core123
-banner motd #Unauthorized access is prohibited#
+banner motd #Yetkisiz erişim yasaktır!#
 line console 0
  password cisco
  login
