@@ -19,7 +19,7 @@ interface FastEthernet0/24
 exit
 
 service password-encryption
-enable setret it123
+enable secret it123
 banner motd #IT Departmanı - Yetkili personel dışındakiler giremez!#
 line console 0
  password cisco
@@ -27,3 +27,4 @@ line console 0
 exit
 end
 wr
+
