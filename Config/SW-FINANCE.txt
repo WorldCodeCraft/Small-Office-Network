@@ -1,0 +1,29 @@
+enable
+conf t
+
+vlan 30
+ name FINANCE
+exit
+
+interface range FastEthernet0/1 - 0/10
+ switchport mode access
+ switchport access vlan 30
+ spanning-tree portfast
+ no shutdown
+exit
+
+interface FastEthernet0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 30,99
+ no shutdown
+exit
+
+service password-encryption
+enable secret fin123
+banner motd #Finance Departmanı - Yetkili personel erişebilir!#
+line console 0
+ password cisco
+ login
+exit
+end
+wr

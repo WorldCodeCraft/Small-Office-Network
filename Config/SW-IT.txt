@@ -1,0 +1,29 @@
+enable
+conf t
+
+vlan 10
+ name IT
+exit
+
+interface range FastEthernet0/1 - 0/10
+ switchport mode access
+ switchport access vlan 10
+ spanning-tree portfast
+ no shutdown
+exit
+
+interface FastEthernet0/24
+ switchport mode trunk
+ switchport trunk allowed vlan 10,99
+ no shutdown
+exit
+
+service password-encryption
+enable setret it123
+banner motd #IT Departmanı - Yetkili personel dışındakiler giremez!#
+line console 0
+ password cisco
+ login
+exit
+end
+wr
