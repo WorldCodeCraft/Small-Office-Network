@@ -62,11 +62,11 @@ Amaç; **ağ segmentasyonu, güvenlik ve yönetim prensiplerini** uygulamalı ol
 ---
 
 ## 📁 Dosya İçeriği  
-- `SW_CORE_Config.txt` → Core Switch yapılandırma kodları  
-- `SW_IT_Config.txt` → IT departmanı switch ayarları  
-- `SW_HR_Config.txt` → HR switch ayarları  
-- `SW_FINANCE_Config.txt` → Finance switch ayarları  
-- `SW_SALES_Config.txt` → Sales switch ayarları  
+- `SW-CORE.txt` → Core Switch yapılandırma kodları  
+- `SW-IT.txt` → IT departmanı switch ayarları  
+- `SW-HR.txt` → HR switch ayarları  
+- `SW-FINANCE.txt` → Finance switch ayarları  
+- `SW-SALES.txt` → Sales switch ayarları  
 - `R1_Config.txt` → Router ayarları  
 - `Network_Topology.pkt` → Packet Tracer dosyası  
 
