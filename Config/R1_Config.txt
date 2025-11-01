@@ -39,10 +39,10 @@ line console 0
 line vty 0 4
  password remote123
  login
- transport input telnet ssh
+ transport input telnet
  exit
 
 no ip routing
 
 end
-write memory
+wr
