@@ -1,0 +1,48 @@
+enable
+configure terminal
+hostname R1
+banner motd # YETKİSİZ ERİŞİM YASAKTIR! #
+
+interface FastEthernet0/0
+ no shutdown
+
+interface FastEthernet0/0.10
+ encapsulation dot1Q 10
+ ip address 192.168.10.1 255.255.255.0
+
+interface FastEthernet0/0.20
+ encapsulation dot1Q 20
+ ip address 192.168.20.1 255.255.255.0
+
+interface FastEthernet0/0.30
+ encapsulation dot1Q 30
+ ip address 192.168.30.1 255.255.255.0
+
+interface FastEthernet0/0.40
+ encapsulation dot1Q 40
+ ip address 192.168.40.1 255.255.255.0
+
+interface FastEthernet0/0.99
+ encapsulation dot1Q 99
+ ip address 192.168.99.1 255.255.255.0
+
+no ip domain-lookup
+enable secret cisco123
+service password-encryption
+
+line console 0
+ password admin123
+ login
+ logging synchronous
+ exit
+
+line vty 0 4
+ password remote123
+ login
+ transport input telnet ssh
+ exit
+
+no ip routing
+
+end
+write memory
